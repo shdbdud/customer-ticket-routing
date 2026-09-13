@@ -1,0 +1,15 @@
+{
+    "model_name": "TF-IDF + Linear SVM",
+    "dataset": "BANKING77",
+    "num_classes": 77,
+    "svm_C": 1.0,
+    "decision_margin_threshold": 0.3,
+    "manual_review_rule": "manual_review if decision_margin < 0.30",
+    "validation_macro_f1": 0.88761,
+    "validation_accuracy": 0.890362,
+    "test_accuracy": 0.8853,
+    "test_auto_coverage": 0.8802,
+    "test_manual_review_rate": 0.1198,
+    "test_auto_accuracy": 0.9444,
+    "test_error_capture_rate": 0.5733
+}
