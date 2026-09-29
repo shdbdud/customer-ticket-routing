@@ -1,0 +1,8 @@
+{
+    "raw_test_accuracy": 0.9240183579806222,
+    "confidence_threshold": 0.7528857588768005,
+    "auto_coverage": 0.9433962264150944,
+    "manual_review_rate": 0.05660377358490566,
+    "auto_routed_accuracy": 0.9540540540540541,
+    "error_capture_rate": 0.42953020134228187
+}
