@@ -4,6 +4,20 @@ An end-to-end NLP project for classifying banking customer-support tickets into 
 
 The project compares traditional machine-learning baselines, neural text classifiers, and a pretrained Transformer. The final system uses a fine-tuned DistilBERT model together with a validation-selected confidence threshold to decide whether a ticket should be routed automatically or sent for human review.
 
+## Key Results
+
+| Metric | Result |
+|---|---:|
+| Test Accuracy | **92.40%** |
+| Test Macro-F1 | **92.58%** |
+| Auto-routed Accuracy | **95.41%** |
+| Auto-routing Coverage | **94.34%** |
+| Manual Review Rate | **5.66%** |
+
+![Automatic routing demo](assets/demo_auto_route.png)
+
+The system improves operational reliability by abstaining on uncertain predictions rather than routing every ticket automatically.
+
 ## System Overview
 
 ```text
@@ -419,6 +433,27 @@ to download the full model files.
 - NumPy
 - Streamlit
 - Git LFS
+
+## Validation Checks
+
+A lightweight test suite verifies the consistency of the routing configuration without loading the full Transformer model. It checks:
+
+- the expected 77 intent classes;
+- one department mapping for every model label;
+- valid confidence-threshold values;
+- consistency between `routing_config.json` and the saved DistilBERT label mapping.
+
+Run the checks with:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The same checks run automatically in GitHub Actions on pushes and pull requests.
+
+## Third-party Resources
+
+This project builds on the BANKING77 dataset and the `distilbert-base-uncased` pretrained model. These third-party resources remain subject to their respective upstream terms and licenses.
 
 ## Future Work
 
