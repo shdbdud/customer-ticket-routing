@@ -164,32 +164,37 @@ The confidence gate raises the reliability of automatically executed routing dec
 
 ```text
 Customer ticket:
-"The beneficiary is not allowed."
+"My card has stopped working."
 
 Predicted intent:
-beneficiary_not_allowed
+card_not_working
 
 Department:
-Transfers
+Card Services
 
 Confidence:
-92.11%
+98.72%
 
 Decision:
 AUTO_ROUTE
 ```
 
+This high-confidence prediction is routed automatically because its confidence is well above the 75.29% routing threshold.
+
 ### Manual review
 
 ```text
 Customer ticket:
-"help me with my transfer"
+"Card stop"
 
 Predicted intent:
-failed_transfer
+card_swallowed
+
+Department:
+Card Services
 
 Confidence:
-75.00%
+26.34%
 
 Routing threshold:
 75.29%
@@ -198,7 +203,7 @@ Decision:
 MANUAL_REVIEW
 ```
 
-The second example is intentionally underspecified: the text does not clearly indicate whether the transfer is failed, pending, delayed, or not received by the recipient. The system therefore abstains from automatic routing.
+The second example is intentionally short and ambiguous. Because model confidence is far below the routing threshold, the system withholds automatic routing and sends the ticket for human review.
 
 ## Error Analysis
 
@@ -253,7 +258,19 @@ The interface displays:
 - automatic-routing threshold;
 - `AUTO_ROUTE` or `MANUAL_REVIEW` decision.
 
-Run it with:
+### Automatic routing example
+
+![Automatic routing demo](assets/demo_auto_route.png)
+
+A high-confidence ticket is automatically assigned to the predicted service department.
+
+### Manual review example
+
+![Manual review demo](assets/demo_manual_review.png)
+
+A low-confidence prediction is withheld from automatic routing and sent for human review.
+
+Run the demo with:
 
 ```bash
 python -m streamlit run app.py
